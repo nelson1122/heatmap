@@ -1,0 +1,21 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 26, 2016, 10:54:51 PM
+    Author     : nelson
+*/
+#geocoderMap{
+    height: 90%;
+    width: 90%;
+}
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  font-size: small;
+}
+

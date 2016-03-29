@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        
+        <title>Facelet Title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="resources/css/style.css"/>
+        
+        <h:outputScript name="primefaces.deferred.js" target="head" />
+        
+        
+        <o:deferredScript library="primefaces" name="jquery/jquery.js" />
+        <o:deferredScript library="primefaces" name="primefaces.js" onbegin="DeferredPrimeFaces.begin()" onsuccess="DeferredPrimeFaces.apply()"/>
+        
+        
+       
+        
+        
+        <script src="http://maps.google.com/maps/api/js?sensor=false"/>
+    
+    </h:head>
+    <h:body>
+        
+        <p:commandButton value="Load" id="button"></p:commandButton>
+        <div id="geocoderMap"></div>
+        <h:outputScript name="ol2/OpenLayers-2.12/OpenLayers.js" target="head"/>
+        <!--<h:outputScript name="ol2/OpenLayers-2.13.1/OpenLayers.js" target="head"/>-->
+        <h:outputScript name="ol2/Heatmap/heatmap.js" target="head"/>
+        <h:outputScript name="ol2/loadmaps.js" target="head"/>
+        
+    </h:body>
+</html>

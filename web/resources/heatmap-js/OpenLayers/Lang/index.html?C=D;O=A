@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+ <head>
+  <title>Index of /sandbox/camptocamp/canvas/openlayers/lib/OpenLayers/Lang</title>
+ </head>
+ <body>
+<h1>Index of /sandbox/camptocamp/canvas/openlayers/lib/OpenLayers/Lang</h1>
+  <table>
+   <tr><th valign="top"><img src="/icons/blank.gif" alt="[ICO]"></th><th><a href="?C=N;O=A">Name</a></th><th><a href="?C=M;O=A">Last modified</a></th><th><a href="?C=S;O=A">Size</a></th><th><a href="?C=D;O=D">Description</a></th></tr>
+   <tr><th colspan="5"><hr></th></tr>
+<tr><td valign="top"><img src="/icons/back.gif" alt="[PARENTDIR]"></td><td><a href="/sandbox/camptocamp/canvas/openlayers/lib/OpenLayers/">Parent Directory</a></td><td>&nbsp;</td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="ar.js">ar.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">1.0K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="be-tarask.js">be-tarask.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">6.3K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="bg.js">bg.js</a></td><td align="right">2009-10-20 16:43  </td><td align="right">1.1K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="br.js">br.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">4.5K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="ca.js">ca.js</a></td><td align="right">2009-11-27 05:44  </td><td align="right">5.0K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="cs-CZ.js">cs-CZ.js</a></td><td align="right">2009-10-20 16:43  </td><td align="right">4.2K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="da-DK.js">da-DK.js</a></td><td align="right">2010-02-08 21:46  </td><td align="right">4.9K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="de.js">de.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">4.9K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="el.js">el.js</a></td><td align="right">2009-10-20 16:43  </td><td align="right">657 </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="en-CA.js">en-CA.js</a></td><td align="right">2008-02-15 13:15  </td><td align="right">857 </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="en.js">en.js</a></td><td align="right">2009-10-23 22:36  </td><td align="right">4.8K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="es.js">es.js</a></td><td align="right">2009-07-23 09:08  </td><td align="right">5.1K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="fi.js">fi.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">866 </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="fr.js">fr.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">4.6K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="fur.js">fur.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">932 </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="gl.js">gl.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">4.5K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="gsw.js">gsw.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">4.5K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="hr.js">hr.js</a></td><td align="right">2009-10-20 16:43  </td><td align="right">2.3K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="hsb.js">hsb.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">4.4K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="hu.js">hu.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">5.0K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="ia.js">ia.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">4.4K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="id.js">id.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">4.4K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="io.js">io.js</a></td><td align="right">2009-07-31 09:34  </td><td align="right">631 </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="is.js">is.js</a></td><td align="right">2009-10-20 16:43  </td><td align="right">1.3K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="it.js">it.js</a></td><td align="right">2009-07-23 09:08  </td><td align="right">4.9K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="ja.js">ja.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">5.4K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="km.js">km.js</a></td><td align="right">2009-07-31 09:34  </td><td align="right">951 </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="ksh.js">ksh.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">6.0K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="nb.js">nb.js</a></td><td align="right">2009-07-31 11:38  </td><td align="right">4.7K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="nds.js">nds.js</a></td><td align="right">2009-10-20 16:43  </td><td align="right">2.4K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="nl.js">nl.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">4.7K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="nn.js">nn.js</a></td><td align="right">2009-07-31 09:34  </td><td align="right">1.1K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="oc.js">oc.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">4.5K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="pt-BR.js">pt-BR.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">4.7K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="pt.js">pt.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">4.6K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="ru.js">ru.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">6.2K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="sk.js">sk.js</a></td><td align="right">2009-10-20 16:43  </td><td align="right">4.5K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="sv-SE.js">sv-SE.js</a></td><td align="right">2009-07-31 09:34  </td><td align="right">4.3K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="te.js">te.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">724 </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="vi.js">vi.js</a></td><td align="right">2010-04-14 12:16  </td><td align="right">4.7K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="zh-CN.js">zh-CN.js</a></td><td align="right">2009-07-23 09:08  </td><td align="right">4.5K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="zh-TW.js">zh-TW.js</a></td><td align="right">2009-07-23 09:08  </td><td align="right">4.5K</td><td>&nbsp;</td></tr>
+   <tr><th colspan="5"><hr></th></tr>
+</table>
+<address>Apache/2.4.10 (Debian) Server at dev.openlayers.org Port 80</address>
+</body></html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Draw Features</title>
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.14.2/css/ol.css" type="text/css">
+    <script src="http://openlayers.org/en/v3.14.2/build/ol.js"></script>
+  </head>
+  <body>
+    <div id="map" class="map"></div>
+    <form class="form-inline">
+      <label>Geometry type &nbsp;</label>
+      <input type="button" id="isSelectedBtn" value="Seleccionar area" onclick="drawBox()"/>
+      <input type="button" id="clearBtn" value="Limpiar" onclick="clearLayer()"/>
+    </form>
+    <script>
+        var raster = new ol.layer.Tile({
+          source: new ol.source.MapQuest({layer: 'sat'})
+        });
+
+        var source = new ol.source.Vector({wrapX: false});
+
+        var vector = new ol.layer.Vector({
+          source: source,
+          style: new ol.style.Style({
+            fill: new ol.style.Fill({
+              color: 'rgba(0, 255, 255, 0.2)'
+            }),
+            stroke: new ol.style.Stroke({
+              color: '#2E9AFE',
+                        width: 2
+                    }),
+                    image: new ol.style.Circle({
+                        radius: 7,
+                        fill: new ol.style.Fill({
+                            color: '#ffcc33'
+                        })
+                    })
+                })
+            });
+
+        var map = new ol.Map({
+            layers: [raster, vector],
+            target: 'map',
+            view: new ol.View({
+                center: [-11000000, 4600000],
+                zoom: 4
+            })
+        });
+
+
+
+        var draw; // global so we can remove it later
+        function addInteraction() {
+            geometryFunction = function (coordinates, geometry) {
+                if (!geometry) {
+                    geometry = new ol.geom.Polygon(null);
+                }
+                var start = coordinates[0];
+                var end = coordinates[1];
+                geometry.setCoordinates([
+                    [start, [start[0], end[1]], end, [end[0], start[1]], start]
+                ]);
+                return geometry;
+            };
+            draw = new ol.interaction.Draw({
+                source: source,
+                type: 'LineString',
+                geometryFunction: geometryFunction,
+                maxPoints: 2
+            });
+            map.addInteraction(draw);
+            alert(draw.Active())
+        }
+
+        /**
+         * Handle change event.
+         */
+        function drawBox() {
+            map.removeInteraction(draw);
+            addInteraction();
+        };
+
+        function clearLayer() {
+            source.clear();
+        }
+        
+        
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+ <head>
+  <title>Index of /sandbox/camptocamp/canvas/openlayers/lib/OpenLayers/Format</title>
+ </head>
+ <body>
+<h1>Index of /sandbox/camptocamp/canvas/openlayers/lib/OpenLayers/Format</h1>
+  <table>
+   <tr><th valign="top"><img src="/icons/blank.gif" alt="[ICO]"></th><th><a href="?C=N;O=A">Name</a></th><th><a href="?C=M;O=A">Last modified</a></th><th><a href="?C=S;O=A">Size</a></th><th><a href="?C=D;O=D">Description</a></th></tr>
+   <tr><th colspan="5"><hr></th></tr>
+<tr><td valign="top"><img src="/icons/back.gif" alt="[PARENTDIR]"></td><td><a href="/sandbox/camptocamp/canvas/openlayers/lib/OpenLayers/">Parent Directory</a></td><td>&nbsp;</td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="ArcXML.js">ArcXML.js</a></td><td align="right">2010-05-11 00:17  </td><td align="right"> 40K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/folder.gif" alt="[DIR]"></td><td><a href="ArcXML/">ArcXML/</a></td><td align="right">2016-02-10 05:56  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="Atom.js">Atom.js</a></td><td align="right">2010-06-08 03:38  </td><td align="right"> 23K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="CSWGetDomain.js">CSWGetDomain.js</a></td><td align="right">2009-10-05 01:15  </td><td align="right">964 </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/folder.gif" alt="[DIR]"></td><td><a href="CSWGetDomain/">CSWGetDomain/</a></td><td align="right">2016-02-10 05:56  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="CSWGetRecords.js">CSWGetRecords.js</a></td><td align="right">2009-10-05 01:15  </td><td align="right">1.0K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/folder.gif" alt="[DIR]"></td><td><a href="CSWGetRecords/">CSWGetRecords/</a></td><td align="right">2016-02-10 05:56  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="Context.js">Context.js</a></td><td align="right">2010-05-10 23:51  </td><td align="right"> 11K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="Filter.js">Filter.js</a></td><td align="right">2009-02-27 07:15  </td><td align="right">3.4K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/folder.gif" alt="[DIR]"></td><td><a href="Filter/">Filter/</a></td><td align="right">2016-02-10 05:56  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="GML.js">GML.js</a></td><td align="right">2009-11-16 02:44  </td><td align="right"> 34K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/folder.gif" alt="[DIR]"></td><td><a href="GML/">GML/</a></td><td align="right">2016-02-10 05:56  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="GPX.js">GPX.js</a></td><td align="right">2010-01-27 06:36  </td><td align="right">6.1K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="GeoJSON.js">GeoJSON.js</a></td><td align="right">2009-10-05 02:21  </td><td align="right"> 24K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="GeoRSS.js">GeoRSS.js</a></td><td align="right">2009-03-14 10:05  </td><td align="right"> 15K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="JSON.js">JSON.js</a></td><td align="right">2009-04-03 16:58  </td><td align="right"> 13K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="KML.js">KML.js</a></td><td align="right">2010-04-12 03:55  </td><td align="right"> 45K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="OSM.js">OSM.js</a></td><td align="right">2010-01-27 06:36  </td><td align="right"> 15K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/folder.gif" alt="[DIR]"></td><td><a href="OWSCommon/">OWSCommon/</a></td><td align="right">2016-02-10 05:56  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="OWSContext.js">OWSContext.js</a></td><td align="right">2010-05-10 23:51  </td><td align="right">2.5K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/folder.gif" alt="[DIR]"></td><td><a href="OWSContext/">OWSContext/</a></td><td align="right">2016-02-10 05:56  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="SLD.js">SLD.js</a></td><td align="right">2009-03-27 01:39  </td><td align="right">3.9K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/folder.gif" alt="[DIR]"></td><td><a href="SLD/">SLD/</a></td><td align="right">2016-02-10 05:56  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="SOSCapabilities.js">SOSCapabilities.js</a></td><td align="right">2009-12-16 06:25  </td><td align="right">2.4K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/folder.gif" alt="[DIR]"></td><td><a href="SOSCapabilities/">SOSCapabilities/</a></td><td align="right">2016-02-10 05:56  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="SOSGetFeatureOfInterest.js">SOSGetFeatureOfInterest.js</a></td><td align="right">2009-12-21 06:31  </td><td align="right">6.3K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="SOSGetObservation.js">SOSGetObservation.js</a></td><td align="right">2009-12-16 12:48  </td><td align="right">9.3K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="Text.js">Text.js</a></td><td align="right">2009-04-14 00:22  </td><td align="right">6.5K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="WFS.js">WFS.js</a></td><td align="right">2009-03-09 21:04  </td><td align="right">7.4K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="WFSCapabilities.js">WFSCapabilities.js</a></td><td align="right">2009-04-06 15:13  </td><td align="right">2.0K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/folder.gif" alt="[DIR]"></td><td><a href="WFSCapabilities/">WFSCapabilities/</a></td><td align="right">2016-02-10 05:56  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="WFSDescribeFeatureType.js">WFSDescribeFeatureType.js</a></td><td align="right">2009-03-31 09:39  </td><td align="right">6.7K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="WFST.js">WFST.js</a></td><td align="right">2009-03-12 09:48  </td><td align="right">929 </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/folder.gif" alt="[DIR]"></td><td><a href="WFST/">WFST/</a></td><td align="right">2016-02-10 05:56  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="WKT.js">WKT.js</a></td><td align="right">2008-07-30 21:44  </td><td align="right"> 13K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="WMC.js">WMC.js</a></td><td align="right">2010-05-10 23:51  </td><td align="right">4.7K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/folder.gif" alt="[DIR]"></td><td><a href="WMC/">WMC/</a></td><td align="right">2016-02-10 05:56  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="WMSCapabilities.js">WMSCapabilities.js</a></td><td align="right">2010-06-08 07:57  </td><td align="right">2.1K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/folder.gif" alt="[DIR]"></td><td><a href="WMSCapabilities/">WMSCapabilities/</a></td><td align="right">2016-02-10 05:56  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="WMSDescribeLayer.js">WMSDescribeLayer.js</a></td><td align="right">2009-03-31 08:06  </td><td align="right">2.8K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/folder.gif" alt="[DIR]"></td><td><a href="WMSDescribeLayer/">WMSDescribeLayer/</a></td><td align="right">2016-02-10 05:56  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="WMSGetFeatureInfo.js">WMSGetFeatureInfo.js</a></td><td align="right">2010-05-06 00:58  </td><td align="right">9.0K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="WMTSCapabilities.js">WMTSCapabilities.js</a></td><td align="right">2010-06-11 19:41  </td><td align="right">2.3K</td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/folder.gif" alt="[DIR]"></td><td><a href="WMTSCapabilities/">WMTSCapabilities/</a></td><td align="right">2016-02-10 05:56  </td><td align="right">  - </td><td>&nbsp;</td></tr>
+<tr><td valign="top"><img src="/icons/unknown.gif" alt="[   ]"></td><td><a href="XML.js">XML.js</a></td><td align="right">2009-12-13 07:43  </td><td align="right"> 31K</td><td>&nbsp;</td></tr>
+   <tr><th colspan="5"><hr></th></tr>
+</table>
+<address>Apache/2.4.10 (Debian) Server at dev.openlayers.org Port 80</address>
+</body></html>
