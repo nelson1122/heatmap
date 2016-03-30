@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Draw Features</title>
-    <link rel="stylesheet" href="http://openlayers.org/en/v3.14.2/css/ol.css" type="text/css">
-    <script src="http://openlayers.org/en/v3.14.2/build/ol.js"></script>
-  </head>
-  <body>
-    <div id="map" class="map"></div>
-    <form class="form-inline">
-      <label>Geometry type &nbsp;</label>
-      <input type="button" id="isSelectedBtn" value="Seleccionar area" onclick="drawBox()"/>
-      <input type="button" id="clearBtn" value="Limpiar" onclick="clearLayer()"/>
-    </form>
-    <script>
-        var raster = new ol.layer.Tile({
-          source: new ol.source.MapQuest({layer: 'sat'})
-        });
+    <head>
+        <title>Draw Features</title>
+        <link rel="stylesheet" href="http://openlayers.org/en/v3.14.2/css/ol.css" type="text/css">
+        <script src="http://openlayers.org/en/v3.14.2/build/ol.js"></script>
+    </head>
+    <body>
+        <div id="map" style="height: 60%; width: 60%;"></div>
+        <form class="form-inline">
+            <input type="button" id="drawBtn" value="Dibujar area" onclick="drawBox()"/>
+            <input type="button" id="clearBtn" value="Limpiar area" onclick="clearLayer()"/>
+            <input type="button" id="selectBtn" value="Seleccionar area" onclick="selectFeatures()"/>
+        </form>
+        <script>
+            var raster = new ol.layer.Tile({
+                source: new ol.source.OSM
+            });
 
-        var source = new ol.source.Vector({wrapX: false});
-
-        var vector = new ol.layer.Vector({
-          source: source,
-          style: new ol.style.Style({
-            fill: new ol.style.Fill({
-              color: 'rgba(0, 255, 255, 0.2)'
-            }),
-            stroke: new ol.style.Stroke({
-              color: '#2E9AFE',
+            var vector = new ol.layer.Vector({
+                source: new ol.source.Vector({wrapX: false}),
+                style: new ol.style.Style({
+                    fill: new ol.style.Fill({
+                        color: 'rgba(0, 255, 255, 0.2)'
+                    }),
+                    stroke: new ol.style.Stroke({
+                        color: '#2E9AFE',
                         width: 2
                     }),
                     image: new ol.style.Circle({
@@ -38,54 +36,127 @@
                 })
             });
 
-        var map = new ol.Map({
-            layers: [raster, vector],
-            target: 'map',
-            view: new ol.View({
-                center: [-11000000, 4600000],
-                zoom: 4
-            })
-        });
-
-
-
-        var draw; // global so we can remove it later
-        function addInteraction() {
-            geometryFunction = function (coordinates, geometry) {
-                if (!geometry) {
-                    geometry = new ol.geom.Polygon(null);
-                }
-                var start = coordinates[0];
-                var end = coordinates[1];
-                geometry.setCoordinates([
-                    [start, [start[0], end[1]], end, [end[0], start[1]], start]
-                ]);
-                return geometry;
-            };
-            draw = new ol.interaction.Draw({
-                source: source,
-                type: 'LineString',
-                geometryFunction: geometryFunction,
-                maxPoints: 2
+            var map = new ol.Map({
+                layers: [raster, vector],
+                target: 'map',
+                view: new ol.View({
+                    center: [-11000000, 4600000],
+                    zoom: 4
+                })
             });
-            map.addInteraction(draw);
-            alert(draw.Active())
-        }
 
-        /**
-         * Handle change event.
-         */
-        function drawBox() {
-            map.removeInteraction(draw);
-            addInteraction();
-        };
+            /**
+             * Dibujar areas
+             */
+            
+            var draw;
+            var isDrawingActive = false;
+            
+            function addInteraction() {
+                geometryFunction = function (coordinates, geometry) {
+                    if (!geometry) {
+                        geometry = new ol.geom.Polygon(null);
+                    }
+                    var start = coordinates[0];
+                    var end = coordinates[1];
+                    geometry.setCoordinates([
+                        [start, [start[0], end[1]], end, [end[0], start[1]], start]
+                    ]);
+                    return geometry;
+                };
+                draw = new ol.interaction.Draw({
+                    source: vector.getSource(),
+                    type: 'LineString',
+                    geometryFunction: geometryFunction,
+                    maxPoints: 2
+                });
+                map.addInteraction(draw);
+            }
 
-        function clearLayer() {
-            source.clear();
-        }
-        
-        
-      
-    </script>
-  </body>
+            function drawBox() {
+                
+                selectClick.getFeatures().clear();
+                
+                if(isSelectedActive){
+                    map.removeInteraction(selectClick)
+                    isSelectedActive = false;
+                }
+                
+                
+                
+                isDrawingActive = !isDrawingActive;
+                if (!isDrawingActive){
+                    map.removeInteraction(draw);
+                }else{
+                    addInteraction();
+                }
+                
+            }
+
+            /**
+             * Seleccionar areas
+             */
+            var select = null;
+            var isSelectedActive = false;
+            
+            var selectClick = new ol.interaction.Select({
+                condition: ol.events.condition.click,
+                source: vector.getSource()
+            });
+            
+            function selectFeatures(){
+                
+                if(isDrawingActive){
+                    map.removeInteraction(draw);
+                    isDrawingActive = false;
+                }
+                
+                isSelectedActive = !isSelectedActive;
+                if(!isSelectedActive){
+                    map.removeInteraction(selectClick);
+                    
+                }else{
+                    map.addInteraction(selectClick);
+                }
+            }
+            
+            selectClick.on('select', function(evt){
+                var selected = evt.selected;
+                var deselected = evt.deselected;
+
+                if (selected.length) {
+                    selected.forEach(function(feature){
+                        console.info("SELECCIONADO");
+                        //console.info(feature.getGeometry().getCoordinates());
+                        var coordinates = feature.getGeometry().getCoordinates()[0];
+                        
+                        var coord = ""
+                                    +"1." + coordinates[0] + "\n"
+                                    +"2." + coordinates[1] + "\n"
+                                    +"3." + coordinates[2] + "\n"
+                                    +"4." + coordinates[3] + "\n"
+                                    +"5." + coordinates[4] + "\n";
+                        alert (coord);
+                        
+                    });
+                } else {
+                    deselected.forEach(function(feature){
+                        console.info("NO SELECCIONADO");
+                        console.info(feature);
+                        
+                    });
+                }
+            });
+            
+            /*
+             * Limpiar capa de areas
+             */
+            function clearLayer() {
+                selectClick.getFeatures().clear();
+                vector.getSource().clear();
+            }
+            
+            
+        </script>
+    </body>
 </html>
