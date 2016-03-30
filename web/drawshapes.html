@@ -6,17 +6,64 @@
         <script src="http://openlayers.org/en/v3.14.2/build/ol.js"></script>
     </head>
     <body>
-        <div id="map" style="height: 60%; width: 60%;"></div>
+        <div id="map"></div>
         <form class="form-inline">
             <input type="button" id="drawBtn" value="Dibujar area" onclick="drawBox()"/>
             <input type="button" id="clearBtn" value="Limpiar area" onclick="clearLayer()"/>
             <input type="button" id="selectBtn" value="Seleccionar area" onclick="selectFeatures()"/>
         </form>
         <script>
-            var raster = new ol.layer.Tile({
-                source: new ol.source.OSM
+            
+            /**
+             * Capas Base
+             */
+            
+            /*Creacion capa base Bing Maps Roads*/
+            var bmapsRoads = new ol.layer.Tile({
+                title: 'BingMaps Roads',
+                preload: Infinity,
+                source: new ol.source.BingMaps({
+                    key: 'AnyGyd4GaAzToU0sDaA0NaXDD88yChcUh8ySoNc32_ddxkrxkl9K5SIATkA8EpMn',
+                    imagerySet: 'Road'
+                }),
+                visible: true
+            });
+            
+            /*Creacion capa base Bing Maps Aerial*/
+            var bmapsAerial = new ol.layer.Tile({
+                title: 'BingMaps Aerial',
+                source: new ol.source.BingMaps({
+                    key: 'AnyGyd4GaAzToU0sDaA0NaXDD88yChcUh8ySoNc32_ddxkrxkl9K5SIATkA8EpMn',
+                    imagerySet: 'AerialWithLabels'}),
+                visible: false
             });
 
+            /*Creacion capa base de OSM*/
+            var osmLayer = new ol.layer.Tile({
+                title: 'OpenStreetMaps',
+                source: new ol.source.OSM(),
+                visible: true
+            });
+            
+            /*Creacion mapa*/
+            var map = new ol.Map({
+                target: 'map',        
+                layers: [bmapsRoads],
+                view: new ol.View({
+                    center: [-8602509.5692, 134983.3435],
+                    zoom: 14
+                })
+            });
+            
+            
+            /*
+             * 
+             *CAPAS DE PRUEBA
+             *
+             */
+            
+            
+            
             var vector = new ol.layer.Vector({
                 source: new ol.source.Vector({wrapX: false}),
                 style: new ol.style.Style({
@@ -35,15 +82,9 @@
                     })
                 })
             });
-
-            var map = new ol.Map({
-                layers: [raster, vector],
-                target: 'map',
-                view: new ol.View({
-                    center: [-11000000, 4600000],
-                    zoom: 4
-                })
-            });
+            
+            
+            map.addLayer(vector);
 
             /**
              * Dibujar areas
