@@ -2,73 +2,217 @@
 <html>
     <head>
         <title>Draw Features</title>
+        <!--<link rel="stylesheet" href="resources/ol3/v3.14.2/ol.css" type="text/css">-->
+        <!--<script type="text/javascript" src="resources/ol3/v3.14.2/ol.js"></script>-->
+
+
         <link rel="stylesheet" href="http://openlayers.org/en/v3.14.2/css/ol.css" type="text/css">
         <script src="http://openlayers.org/en/v3.14.2/build/ol.js"></script>
+        <link rel="stylesheet" href="resources/ol3/ol3-layerswitcher.css" type="text/css"/>
+        <link rel="stylesheet" href="resources/ol3/css/style.css" type="text/css"/>
+        <script type="text/javascript" src="resources/ol3/ol3-layerswitcher.js"></script>
+        <script type="text/javascript" src="resources/ol3/js/jquery.js"></script>
     </head>
     <body>
-        <div id="map"></div>
+
         <form class="form-inline">
             <input type="button" id="drawBtn" value="Dibujar area" onclick="drawBox()"/>
             <input type="button" id="clearBtn" value="Limpiar area" onclick="clearLayer()"/>
             <input type="button" id="selectBtn" value="Seleccionar area" onclick="selectFeatures()"/>
+            <br>
+
+            <label>radius size</label>
+            <input id="radius" type="range" min="1" max="10" step="1" value="5"/>
+            <label>blur size</label>
+            <input id="blur" type="range" min="1" max="50" step="1" value="15"/>
+            <label>opacity</label>
+            <input id="opacity" type="range" min="0" max="1" step="1" value="0"/>
+
+            <div id="map" style="height: 90%; width: 90%;"></div>
+            <div id="popup" class="ol-popup">
+                <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                <div id="popup-content"></div>
+            </div>
+
         </form>
         <script>
-            
+
             /**
-             * Capas Base
+             * CAPAS BASE
              */
-            
+
             /*Creacion capa base Bing Maps Roads*/
             var bmapsRoads = new ol.layer.Tile({
                 title: 'BingMaps Roads',
-                preload: Infinity,
                 source: new ol.source.BingMaps({
                     key: 'AnyGyd4GaAzToU0sDaA0NaXDD88yChcUh8ySoNc32_ddxkrxkl9K5SIATkA8EpMn',
                     imagerySet: 'Road'
                 }),
-                visible: true
+                visible: false
             });
-            
+
             /*Creacion capa base Bing Maps Aerial*/
             var bmapsAerial = new ol.layer.Tile({
                 title: 'BingMaps Aerial',
                 source: new ol.source.BingMaps({
                     key: 'AnyGyd4GaAzToU0sDaA0NaXDD88yChcUh8ySoNc32_ddxkrxkl9K5SIATkA8EpMn',
                     imagerySet: 'AerialWithLabels'}),
-                visible: false
+                visible: true
             });
 
             /*Creacion capa base de OSM*/
             var osmLayer = new ol.layer.Tile({
                 title: 'OpenStreetMaps',
                 source: new ol.source.OSM(),
+                visible: false
+            });
+
+
+            /**
+             * MAPA DE PUNTOS
+             * @type ol.layer.Vector
+             */
+
+            var points = new ol.layer.Vector({
+                title: 'Puntos Estilo',
+                source: new ol.source.Vector({
+                    url: 'test.geojson',
+                    format: new ol.format.GeoJSON({
+                        defaultDataProjection: 'EPSG:3857'
+                    })
+                }),
+                style: new ol.style.Style({
+                    image: new ol.style.Icon({
+                        anchor: [190, 370],
+                        anchorXUnits: 'pixels',
+                        anchorYUnits: 'pixels',
+                        src: 'resources/ol3/img/location_icon-1.png',
+                        scale: 0.10
+                    })
+                }),
                 visible: true
             });
+
             
-            /*Creacion mapa*/
+            /**
+             * MAPA DE CALOR
+             * @type ol.layer.Heatmap
+             */
+
+            var blur = document.getElementById('blur');
+            var radius = document.getElementById('radius');
+            var opacity = document.getElementById('opacity');
+
+            var heatmap = new ol.layer.Heatmap({
+                title: 'Heatmap',
+                source: new ol.source.Vector({
+                    url: 'test.geojson',
+                    format: new ol.format.GeoJSON({
+                        defaultDataProjection: 'EPSG:3857'
+                    })
+                }),
+                visible: false,
+                blur: parseInt(blur.value, 10),
+                radius: parseInt(radius.value, 10),
+                opacity: parseInt(opacity.value, 10)
+
+            });
+
+            /*eventos para calibrar mapa*/
+            blur.addEventListener('input', function () {
+                //console.log(blur.value);
+                heatmap.setBlur(parseInt(blur.value, 10));
+            });
+
+            radius.addEventListener('input', function () {
+                //console.log(radius.value);
+                heatmap.setRadius(parseInt(radius.value, 10));
+            });
+
+            opacity.addEventListener('input', function () {
+                //console.log(opacity.value);
+                heatmap.setOpacity(parseInt(opacity.value, 10));
+            });
+
+            /**
+             * GRUPOS PARA LAYERSWITCHER
+             * @type ol.layer.Group
+             */
+
+            var baseMaps = new ol.layer.Group({
+                title: 'BaseMaps',
+                layers: [bmapsRoads, bmapsAerial, osmLayer]
+            });
+
+            var overlays = new ol.layer.Group({
+                title: 'Overlays',
+                layers: [points, heatmap]
+            });
+
+            /**
+             * MAPA
+             * @type ol.Map
+             */
+
             var map = new ol.Map({
-                target: 'map',        
-                layers: [bmapsRoads],
+                target: 'map', // The DOM element that will contains the map
+
+                controls: ol.control.defaults({
+                    attributionOptions: ({
+                        collapsible: false
+                    })
+                }).extend([
+                    new ol.control.ZoomToExtent({
+                        extent: [
+                            -8605605, 137132,
+                            -8599605, 132374
+                        ]
+                    }),
+                    new ol.control.ScaleLine(),
+                    new ol.control.FullScreen(),
+                    new ol.control.MousePosition({
+                        coordinateFormat: ol.coordinate.createStringXY(4),
+                        projection: 'EPSG:3857'
+                    })
+                ]),
+                // interactions and controls are seperate entities in ol3
+                // we extend the default navigation with a hover select interaction
+                //interactions: ol.interaction.defaults().extend([
+                //    new ol.interaction.Select({
+                //        condition: ol.events.condition.mouseMove
+                //    })
+                //]),
+                renderer: 'canvas', // Force the renderer to be used
+                layers: [baseMaps, overlays],
+                // Create a view centered on the specified location and zoom level
                 view: new ol.View({
                     center: [-8602509.5692, 134983.3435],
-                    zoom: 14
+                    zoom: 14,
+                    maxZoom: 18,
+                    minZoom: 14
                 })
             });
-            
-            
+
+
+
+            var layerSwitcher = new ol.control.LayerSwitcher();
+            map.addControl(layerSwitcher);
+
+
+
+
+
+
             /*
-             * 
-             *CAPAS DE PRUEBA
+             *DIBUJAR AREAS 
              *
              */
-            
-            
-            
-            var vector = new ol.layer.Vector({
+
+            var drawingLayer = new ol.layer.Vector({
                 source: new ol.source.Vector({wrapX: false}),
                 style: new ol.style.Style({
                     fill: new ol.style.Fill({
-                        color: 'rgba(0, 255, 255, 0.2)'
+                        color: 'rgba(0, 0, 255, 0.2)'
                     }),
                     stroke: new ol.style.Stroke({
                         color: '#2E9AFE',
@@ -82,17 +226,17 @@
                     })
                 })
             });
-            
-            
-            map.addLayer(vector);
+
+
+            map.addLayer(drawingLayer);
 
             /**
              * Dibujar areas
              */
-            
+
             var draw;
             var isDrawingActive = false;
-            
+
             function addInteraction() {
                 geometryFunction = function (coordinates, geometry) {
                     if (!geometry) {
@@ -106,32 +250,35 @@
                     return geometry;
                 };
                 draw = new ol.interaction.Draw({
-                    source: vector.getSource(),
+                    source: drawingLayer.getSource(),
                     type: 'LineString',
                     geometryFunction: geometryFunction,
-                    maxPoints: 2
+                    maxPoints: 2,
+                    layers: [drawingLayer]
                 });
                 map.addInteraction(draw);
             }
 
             function drawBox() {
-                
+
                 selectClick.getFeatures().clear();
-                
-                if(isSelectedActive){
-                    map.removeInteraction(selectClick)
+
+                if (isSelectedActive) {
+                    map.removeInteraction(selectClick);
                     isSelectedActive = false;
                 }
-                
-                
-                
+
                 isDrawingActive = !isDrawingActive;
-                if (!isDrawingActive){
-                    map.removeInteraction(draw);
-                }else{
-                    addInteraction();
+                if (!isDrawingActive) {
+                    map.on('singleclick', singleclickFunction);// activo captura de puntos para mostrar datos
+                    map.removeInteraction(draw); //elimino interaccion que dibuja figuras
+                    //alert("Dibujar figuras desactivado");
+                } else {
+                    map.un('singleclick', singleclickFunction);// desactivo captura de puntos para mostrar datos
+                    addInteraction(); //agrego interaccion que dibuja figuras
+                    //alert("Dibujar figuras activado");
                 }
-                
+
             }
 
             /**
@@ -139,65 +286,171 @@
              */
             var select = null;
             var isSelectedActive = false;
-            
+
             var selectClick = new ol.interaction.Select({
                 condition: ol.events.condition.click,
-                source: vector.getSource()
+                source: drawingLayer.getSource(),
+                layers: [drawingLayer]
             });
-            
-            function selectFeatures(){
-                
-                if(isDrawingActive){
+
+            function selectFeatures() {
+                if (isDrawingActive) {
                     map.removeInteraction(draw);
                     isDrawingActive = false;
                 }
-                
                 isSelectedActive = !isSelectedActive;
-                if(!isSelectedActive){
-                    map.removeInteraction(selectClick);
-                    
-                }else{
-                    map.addInteraction(selectClick);
+                if (!isSelectedActive) {
+                    map.removeInteraction(selectClick); //elimino la interaccion del cursor con los puntos
+                    map.on('singleclick', singleclickFunction);
+                    map.on('pointermove', pointermoveFunction);
+                    //alert("Seleccionar figuras desactivado");
+                } else {
+                    map.un('singleclick', singleclickFunction);
+                    map.un('pointermove', pointermoveFunction);//agrego la interaccion del cursor con los puntos
+                    map.addInteraction(selectClick); 
+                    //alert("Seleccionar figuras activado");
                 }
             }
-            
-            selectClick.on('select', function(evt){
+
+            selectClick.on('select', function (evt) {
                 var selected = evt.selected;
                 var deselected = evt.deselected;
 
                 if (selected.length) {
-                    selected.forEach(function(feature){
-                        console.info("SELECCIONADO");
+                    selected.forEach(function (feature) {
+                        //console.info("SELECCIONADO");
                         //console.info(feature.getGeometry().getCoordinates());
                         var coordinates = feature.getGeometry().getCoordinates()[0];
-                        
-                        var coord = ""
-                                    +"1." + coordinates[0] + "\n"
-                                    +"2." + coordinates[1] + "\n"
-                                    +"3." + coordinates[2] + "\n"
-                                    +"4." + coordinates[3] + "\n"
-                                    +"5." + coordinates[4] + "\n";
-                        alert (coord);
-                        
+
+                        if (coordinates.length) {
+                            var coord = "Es poligono: \n"
+                                    + "1." + coordinates[0] + "\n"
+                                    + "2." + coordinates[1] + "\n"
+                                    + "3." + coordinates[2] + "\n"
+                                    + "4." + coordinates[3] + "\n"
+                                    + "5." + coordinates[4] + "\n";
+                            alert(coord);
+                        }
                     });
                 } else {
-                    deselected.forEach(function(feature){
-                        console.info("NO SELECCIONADO");
-                        console.info(feature);
-                        
+                    deselected.forEach(function (feature) {
+                        //console.info("NO SELECCIONADO");
+                        //console.info(feature);
+
                     });
                 }
             });
+
+            /**
+             * DIALOGO DE CARACTERISTICAS
+             * @returns {undefined}
+             */
+
+            var container = document.getElementById('popupContent');
+
+            
+
+
+            /**
+             * POPUP
+             * 
+             */
+
+            var container = document.getElementById('popup');
+            var content = document.getElementById('popup-content');
+            var closer = document.getElementById('popup-closer');
+            //Add a click handler to hide the popup.
+            closer.onclick = function () {
+                container.style.display = 'none';
+                closer.blur();
+                return false;
+            };
+
+            // Create an overlay to anchor the popup to the map.
+            var popup = new ol.Overlay({
+                element: container
+            });
+            
+            map.addOverlay(popup);
+
+            // Show FeatureInfo on click
+            var singleclickFunction = function (evt) {
+                
+                //alert('Entro al listener');
+                var feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+                    return feature;
+                });
+
+                if (feature && points.getVisible() && !heatmap.getVisible()) {
+                    popup.setPosition(evt.coordinate);
+                    
+                    //var coordinates = feature.getGeometry().getCoordinates();
+                    var properties = feature.getProperties();
+                    var injury_id = '';
+                    for (var key in properties){
+                        if(key === 'fatal_injury_id' || key === 'non_fatal_injury_id'){
+                            //alert("Key: "+ key + ", Value: " + properties[key]);
+                            injury_id = properties[key];
+                        }
+                    }
+                    //Se carga, recorre el json con los datos sobre el punto seleccionado y
+                    //se muestran en el popup
+                    $.getJSON('data.json', function (json) {
+                        var html = ''; 
+                        var data = JSON.parse(JSON.stringify(json));
+                        var values = data[injury_id];
+                         
+                        for (var k in values){
+                            html = html + '<b>'+ k +': </b>'+ values[k] +'</br>';
+                        }
+                        //console.log(html);
+                        content.innerHTML = html;
+                        container.style.display = 'block';
+                    });
+                    //alert("Generacion del popup correcta");
+                }
+            };
+
+            map.on('singleclick', singleclickFunction);
+            
+            
+            /**
+            * PUNTERO
+            */
+           
+
+            var cursorHoverStyle = "pointer";
+            var target = map.getTarget();
+
+            //target returned might be the DOM element or the ID of this element dependeing on how the map was initialized
+            //either way get a jQuery object for it
+            var jTarget = typeof target === "string" ? $("#" + target) : $(target);
+            
+            var pointermoveFunction = function (event) {
+                var mouseCoordInMapPixels = [event.originalEvent.offsetX, event.originalEvent.offsetY];
+
+                //detect feature at mouse coords
+                var hit = map.forEachFeatureAtPixel(mouseCoordInMapPixels, function (feature, layer) {
+                    return true;
+                });
+
+                if (hit && points.getVisible() && !heatmap.getVisible()) {
+                    jTarget.css("cursor", cursorHoverStyle);
+                } else {
+                    jTarget.css("cursor", "");
+                }   
+            };
+
+            map.on("pointermove", pointermoveFunction);
             
             /*
              * Limpiar capa de areas
              */
             function clearLayer() {
                 selectClick.getFeatures().clear();
-                vector.getSource().clear();
+                drawingLayer.getSource().clear();
             }
-            
-            
+
         </script>
     </body>
 </html>
