@@ -193,15 +193,8 @@
                 })
             });
 
-
-
             var layerSwitcher = new ol.control.LayerSwitcher();
             map.addControl(layerSwitcher);
-
-
-
-
-
 
             /*
              *DIBUJAR AREAS 
@@ -231,9 +224,8 @@
             map.addLayer(drawingLayer);
 
             /**
-             * Dibujar areas
+             * DIBUJAR AREAS
              */
-
             var draw;
             var isDrawingActive = false;
 
@@ -278,7 +270,6 @@
                     addInteraction(); //agrego interaccion que dibuja figuras
                     //alert("Dibujar figuras activado");
                 }
-
             }
 
             /**
@@ -342,20 +333,9 @@
             });
 
             /**
-             * DIALOGO DE CARACTERISTICAS
+             * DIALOGO DE CARACTERISTICAS (POPUP)
              * @returns {undefined}
              */
-
-            var container = document.getElementById('popupContent');
-
-            
-
-
-            /**
-             * POPUP
-             * 
-             */
-
             var container = document.getElementById('popup');
             var content = document.getElementById('popup-content');
             var closer = document.getElementById('popup-closer');
@@ -413,12 +393,10 @@
 
             map.on('singleclick', singleclickFunction);
             
-            
-            /**
-            * PUNTERO
-            */
-           
-
+            /*
+             * PUNTERO (EVENTO QUE SE EJECUTA AL PASAR EL PUNTERO SOBRE LOS PUNTOS GEOCODIFICADOS)
+             * @type String
+             */ 
             var cursorHoverStyle = "pointer";
             var target = map.getTarget();
 
