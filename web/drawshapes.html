@@ -16,6 +16,11 @@
     <body>
 
         <form class="form-inline">
+            <br>
+            Seleccione:
+            <input type="button" id="pointsBtn" value="Mapa de puntos" onclick="removePointsLayer()"/>
+            <input type="button" id="heatmapBtn" value="Mapa de calor" onclick="removeHeatmapLayer()"/>
+            <br><br>
             <input type="button" id="drawBtn" value="Dibujar area" onclick="drawBox()"/>
             <input type="button" id="clearBtn" value="Limpiar area" onclick="clearLayer()"/>
             <input type="button" id="selectBtn" value="Seleccionar area" onclick="selectFeatures()"/>
@@ -93,7 +98,7 @@
                 visible: true
             });
 
-            
+
             /**
              * MAPA DE CALOR
              * @type ol.layer.Heatmap
@@ -144,9 +149,14 @@
                 layers: [bmapsRoads, bmapsAerial, osmLayer]
             });
 
-            var overlays = new ol.layer.Group({
+            var pointsOverlay = new ol.layer.Group({
+                title: 'Overlays1',
+                layers: [points]
+            });
+            
+            var heatmapOverlay = new ol.layer.Group({
                 title: 'Overlays',
-                layers: [points, heatmap]
+                layers: [heatmap]
             });
 
             /**
@@ -183,7 +193,7 @@
                 //    })
                 //]),
                 renderer: 'canvas', // Force the renderer to be used
-                layers: [baseMaps, overlays],
+                layers: [baseMaps, pointsOverlay],
                 // Create a view centered on the specified location and zoom level
                 view: new ol.View({
                     center: [-8602509.5692, 134983.3435],
@@ -298,7 +308,7 @@
                 } else {
                     map.un('singleclick', singleclickFunction);
                     map.un('pointermove', pointermoveFunction);//agrego la interaccion del cursor con los puntos
-                    map.addInteraction(selectClick); 
+                    map.addInteraction(selectClick);
                     //alert("Seleccionar figuras activado");
                 }
             }
@@ -325,8 +335,8 @@
                     });
                 } else {
                     deselected.forEach(function (feature) {
-                        //console.info("NO SELECCIONADO");
-                        //console.info(feature);
+                    //console.info("NO SELECCIONADO");
+                    //console.info(feature);
 
                     });
                 }
@@ -350,12 +360,12 @@
             var popup = new ol.Overlay({
                 element: container
             });
-            
+
             map.addOverlay(popup);
 
             // Show FeatureInfo on click
             var singleclickFunction = function (evt) {
-                
+
                 //alert('Entro al listener');
                 var feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
                     return feature;
@@ -363,12 +373,12 @@
 
                 if (feature && points.getVisible() && !heatmap.getVisible()) {
                     popup.setPosition(evt.coordinate);
-                    
+
                     //var coordinates = feature.getGeometry().getCoordinates();
                     var properties = feature.getProperties();
                     var injury_id = '';
-                    for (var key in properties){
-                        if(key === 'fatal_injury_id' || key === 'non_fatal_injury_id'){
+                    for (var key in properties) {
+                        if (key === 'fatal_injury_id' || key === 'non_fatal_injury_id') {
                             //alert("Key: "+ key + ", Value: " + properties[key]);
                             injury_id = properties[key];
                         }
@@ -376,12 +386,12 @@
                     //Se carga, recorre el json con los datos sobre el punto seleccionado y
                     //se muestran en el popup
                     $.getJSON('data.json', function (json) {
-                        var html = ''; 
+                        var html = '';
                         var data = JSON.parse(JSON.stringify(json));
                         var values = data[injury_id];
-                         
-                        for (var k in values){
-                            html = html + '<b>'+ k +': </b>'+ values[k] +'</br>';
+
+                        for (var k in values) {
+                            html = html + '<b>' + k + ': </b>' + values[k] + '</br>';
                         }
                         //console.log(html);
                         content.innerHTML = html;
@@ -392,18 +402,18 @@
             };
 
             map.on('singleclick', singleclickFunction);
-            
+
             /*
              * PUNTERO (EVENTO QUE SE EJECUTA AL PASAR EL PUNTERO SOBRE LOS PUNTOS GEOCODIFICADOS)
              * @type String
-             */ 
+             */
             var cursorHoverStyle = "pointer";
             var target = map.getTarget();
 
             //target returned might be the DOM element or the ID of this element dependeing on how the map was initialized
             //either way get a jQuery object for it
             var jTarget = typeof target === "string" ? $("#" + target) : $(target);
-            
+
             var pointermoveFunction = function (event) {
                 var mouseCoordInMapPixels = [event.originalEvent.offsetX, event.originalEvent.offsetY];
 
@@ -416,17 +426,48 @@
                     jTarget.css("cursor", cursorHoverStyle);
                 } else {
                     jTarget.css("cursor", "");
-                }   
+                }
             };
 
             map.on("pointermove", pointermoveFunction);
-            
+
             /*
              * Limpiar capa de areas
              */
             function clearLayer() {
                 selectClick.getFeatures().clear();
                 drawingLayer.getSource().clear();
+            }
+
+            /*
+             * var source = yourLayer.getSource();
+             * var params = source.getParams();
+             * params.t = new Date().getMilliseconds();
+             * source.updateParams(params);
+             */
+            
+            /**
+             * AGREGAR/ELIMINAR CAPAS
+             * @returns
+             */
+            
+            var pointsLayerState = true;
+            
+            function removePointsLayer(){
+                
+                pointsLayerState = !pointsLayerState;
+                if (!pointsLayerState){
+                    map.removeLayer(pointsOverlay);
+                    map.addLayer(heatmap);
+                }else{
+                    map.addLayer(pointsOverlay);
+                    map.removeLayer(heatmap);
+                }
+                alert("Capa de puntos eliminada.");
+            }
+            function removeHeatmapLayer(){
+                map.removeLayer(pointsOverlay);
+                alert("Capa de puntos eliminada.");
             }
 
         </script>
